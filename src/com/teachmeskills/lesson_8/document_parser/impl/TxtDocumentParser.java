@@ -6,7 +6,6 @@ public class TxtDocumentParser implements IParser {
 
     @Override
     public void parseFile(String fileName) {
-        System.out.println("Get data from TXT document.");
+        System.out.println("Get data from TXT document: " + fileName);
     }
-
 }

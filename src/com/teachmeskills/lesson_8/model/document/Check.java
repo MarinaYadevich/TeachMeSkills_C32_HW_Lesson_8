@@ -2,22 +2,26 @@ package com.teachmeskills.lesson_8.model.document;
 
 import java.util.Date;
 
-// TODO добавить поля: сумма перевода, дата перевода, номер счета или номер карты
-// TODO создать метод для вывода информации о чеке на экран
+// TODO добавить поля: сумма перевода, дата перевода, номер счета или номер карты +
+// TODO создать метод для вывода информации о чеке на экран +
 
 public class Check {
-    double transferAmount;
-    Date dateTransfer;
-    String cardNumber;
+    public double transferAmount;
+    public Date dateTransfer;
+    String fromNumber;
+    String toNumber;
+    String comment;
 
-    public Check(String cardNumber, Date dateTransfer, double transferAmount) {
-        this.cardNumber = cardNumber;
-        this.dateTransfer = dateTransfer;
+    public Check(double transferAmount, String fromNumber, String toNumber, Date dateTransfer, String comment) {
         this.transferAmount = transferAmount;
+        this.toNumber = toNumber;
+        this.fromNumber = fromNumber;
+        this.dateTransfer = dateTransfer;
+        this.comment = comment;
     }
 
-    public void displayCheck(double transferAmount, Date dateTransfer, String cardNumber){
-        System.out.println("Check date: " + dateTransfer+ ".\n Card number: " +
-                cardNumber + ".\n Amount transfer: " + transferAmount);
+    public void showCheckInfo(){
+        System.out.println("Сумма перевода: " + this.transferAmount + ". Дата перевода: " + this.dateTransfer +
+                ", c " + this.fromNumber + ", на " + this.toNumber + ". Комментарий: " + this.comment);
     }
 }

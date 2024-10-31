@@ -2,42 +2,57 @@ package com.teachmeskills.lesson_8.transfer.impl;
 
 import com.teachmeskills.lesson_8.model.account.Account;
 import com.teachmeskills.lesson_8.model.card.BaseCard;
+import com.teachmeskills.lesson_8.model.document.Check;
 import com.teachmeskills.lesson_8.transfer.CardTransferService;
+import com.teachmeskills.lesson_8.utils.Constants;
 
-// TODO реализовать имплементацию интерфейса
+import java.util.Date;
+
+// TODO реализовать имплементацию интерфейса +
 
 public class MasterCardTransferService implements CardTransferService {
 
     @Override
-    public void transferFromCardToCard(BaseCard cardSender, BaseCard cardRecipient, double amountTransfer) {
-        if (cardSender.checkCardLimitTransfer(amountTransfer)) {
-            cardSender.amount -= amountTransfer;
-            cardRecipient.amount += amountTransfer;
-            System.out.println("The transfer was successful.");
+    public Check transferFromCardToCard(BaseCard cardSender, BaseCard cardRecipient, double amountTransfer) {
+        if(cardSender.amount >= amountTransfer){
+            if(amountTransfer > 0){
+                if (cardSender.checkCardLimitTransfer(amountTransfer)) {
+                    cardSender.amount -= amountTransfer;
+                    cardRecipient.amount += amountTransfer;
+                    return new Check(amountTransfer, cardSender.cardNumber, cardRecipient.cardNumber, new Date(),"Success.");
+                } else {
+                    return new Check(amountTransfer, cardSender.cardNumber, cardRecipient.cardNumber, new Date(),
+                            "Limits have been exceeded. The transfer limit for this card is: " + Constants.LIMIT_MASTER_CARD);
+                }
+            }else {
+                return new Check(amountTransfer, cardSender.cardNumber, cardRecipient.cardNumber, new Date(),
+                        "Incorrect value");
+            }
         } else {
-            System.out.println("Limit exceeded.");
+            return new Check(amountTransfer, cardSender.cardNumber,cardRecipient.cardNumber, new Date(),
+                    "Insufficient funds on the card.");
         }
     }
 
     @Override
-    public void transferFromCardToAccount(BaseCard cardSender, Account receivingAccount, double amountTransfer) {
-        if (cardSender.checkCardLimitTransfer(amountTransfer)) {
-            cardSender.amount -= amountTransfer;
-            receivingAccount.amount += amountTransfer;
-            System.out.println("The transfer was successful.");
-        }else {
-            System.out.println("Limit exceeded.");
-        }
-    }
-
-    @Override
-    public void transferFromAccountToAccount(Account senderAccountNumber, Account receivingAccountNumber, double amountTransfer) {
-        if(senderAccountNumber.checkAccountLimitTransfer(amountTransfer)){
-            senderAccountNumber.amount -= amountTransfer;
-            receivingAccountNumber.amount += amountTransfer;
-            System.out.println("The transfer was successful.");
+    public Check transferFromCardToAccount(BaseCard cardSender, Account receivingAccount, double amountTransfer) {
+        if(cardSender.amount >= amountTransfer) {
+            if (amountTransfer > 0) {
+                if (cardSender.checkCardLimitTransfer(amountTransfer)) {
+                    cardSender.amount -= amountTransfer;
+                    receivingAccount.amount += amountTransfer;
+                    return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(), "Success.");
+                } else {
+                    return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(),
+                            "Limits have been exceeded. The transfer limit for this card is : " + Constants.LIMIT_MASTER_CARD);
+                }
+            } else {
+                return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(),
+                        "Incorrect value");
+            }
         }else{
-            System.out.println("Limit exceeded.");
+            return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(),
+                    "Insufficient funds on the card.");
         }
     }
 }
