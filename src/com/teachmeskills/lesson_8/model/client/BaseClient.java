@@ -4,7 +4,31 @@ import com.teachmeskills.lesson_8.model.account.Account;
 import com.teachmeskills.lesson_8.model.card.BaseCard;
 
 public abstract class BaseClient {
-    String name;
-    Account[] accounts;
-    BaseCard[] cards;
+    private String name;
+    private Account[] accounts;
+    private BaseCard[] cards;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Account[] getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Account[] accounts) {
+        this.accounts = accounts;
+    }
+
+    public BaseCard[] getCards() {
+        return cards;
+    }
+
+    public void setCards(BaseCard[] cards) {
+        this.cards = cards;
+    }
 }

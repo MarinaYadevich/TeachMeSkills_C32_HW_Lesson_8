@@ -3,12 +3,12 @@ package com.teachmeskills.lesson_8.model.card;
 import java.util.Date;
 
 public abstract class BaseCard {
-    public String cardNumber;
-    public int cvv;
-    public Date validDate;
-    public String cardHolder;
-    public String currency;
-    public double amount;
+    private String cardNumber;
+    private int cvv;
+    private Date validDate;
+    private String cardHolder;
+    private String currency;
+    private double amount;
 
     public BaseCard(String cardNumber, int cvv, Date validDate, String cardHolder, String currency, double amount) {
         if (amount < 0) {
@@ -37,5 +37,53 @@ public abstract class BaseCard {
 
     public void showBaseInfo(){
         System.out.println(cardNumber + "->" + amount + "->" + validDate);
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public int getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
+
+    public Date getValidDate() {
+        return validDate;
+    }
+
+    public void setValidDate(Date validDate) {
+        this.validDate = validDate;
+    }
+
+    public String getCardHolder() {
+        return cardHolder;
+    }
+
+    public void setCardHolder(String cardHolder) {
+        this.cardHolder = cardHolder;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

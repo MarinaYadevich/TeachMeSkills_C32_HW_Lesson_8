@@ -51,16 +51,16 @@ public class ApplicationRunner {
         Check resultCheck1 = masterCardTransferService.transferFromCardToCard(masterCardClient1, masterCardClient2, 50);
         resultCheck1.showCheckInfo();
         System.out.println("---------");
-        System.out.println(masterCardClient1.amount);
-        System.out.println(masterCardClient2.amount);
+        System.out.println(masterCardClient1.getAmount());
+        System.out.println(masterCardClient2.getAmount());
         System.out.println();
 
         VisaCardTransferService visaCardTransferService = new VisaCardTransferService();
         Check resultCheck2 = visaCardTransferService.transferFromCardToAccount(visaCardClient2, accountSecondClient1, 1000);
         resultCheck2.showCheckInfo();
         System.out.println("-------");
-        System.out.println(visaCardClient2.amount);
-        System.out.println(accountFirstClient1.amount);
+        System.out.println(visaCardClient2.getAmount());
+        System.out.println(accountFirstClient1.getAmount());
 
         // создать двух клиентов +
         // каждому клиенту создать два счета и две карты +

@@ -4,6 +4,6 @@ package com.teachmeskills.lesson_8.utils;
 // TODO использовать эти константы в методах проверки лимитов по карте перед переводом +
 
 public interface Constants {
-    double LIMIT_VISA_CARD = 1000;
-    double LIMIT_MASTER_CARD = 2000;
+    public static final double LIMIT_VISA_CARD = 1000;
+    public static final double LIMIT_MASTER_CARD = 2000;
 }

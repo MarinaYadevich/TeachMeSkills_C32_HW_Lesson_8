@@ -14,45 +14,53 @@ public class MasterCardTransferService implements CardTransferService {
 
     @Override
     public Check transferFromCardToCard(BaseCard cardSender, BaseCard cardRecipient, double amountTransfer) {
-        if(cardSender.amount >= amountTransfer){
+        if(cardSender.getAmount() >= amountTransfer){
             if(amountTransfer > 0){
                 if (cardSender.checkCardLimitTransfer(amountTransfer)) {
-                    cardSender.amount -= amountTransfer;
-                    cardRecipient.amount += amountTransfer;
-                    return new Check(amountTransfer, cardSender.cardNumber, cardRecipient.cardNumber, new Date(),"Success.");
+                    cardSender.setAmount(cardSender.getAmount() - amountTransfer);
+                    cardRecipient.setAmount(cardRecipient.getAmount() + amountTransfer);
+//                    cardSender.amount -= amountTransfer;
+//                    cardRecipient.amount += amountTransfer;
+                    return new Check(amountTransfer, cardSender.getCardNumber(), cardRecipient.getCardNumber(),
+                            new Date(),"Success.");
                 } else {
-                    return new Check(amountTransfer, cardSender.cardNumber, cardRecipient.cardNumber, new Date(),
+                    return new Check(amountTransfer, cardSender.getCardNumber(), cardRecipient.getCardNumber(),
+                            new Date(),
                             "Limits have been exceeded. The transfer limit for this card is: " + Constants.LIMIT_MASTER_CARD);
                 }
             }else {
-                return new Check(amountTransfer, cardSender.cardNumber, cardRecipient.cardNumber, new Date(),
+                return new Check(amountTransfer, cardSender.getCardNumber(), cardRecipient.getCardNumber(), new Date(),
                         "Incorrect value");
             }
         } else {
-            return new Check(amountTransfer, cardSender.cardNumber,cardRecipient.cardNumber, new Date(),
+            return new Check(amountTransfer, cardSender.getCardNumber(),cardRecipient.getCardNumber(), new Date(),
                     "Insufficient funds on the card.");
         }
     }
 
     @Override
     public Check transferFromCardToAccount(BaseCard cardSender, Account receivingAccount, double amountTransfer) {
-        if(cardSender.amount >= amountTransfer) {
+        if(cardSender.getAmount() >= amountTransfer) {
             if (amountTransfer > 0) {
                 if (cardSender.checkCardLimitTransfer(amountTransfer)) {
-                    cardSender.amount -= amountTransfer;
-                    receivingAccount.amount += amountTransfer;
-                    return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(), "Success.");
+                    cardSender.setAmount(cardSender.getAmount() - amountTransfer);
+                    receivingAccount.setAmount(receivingAccount.getAmount() + amountTransfer);
+//                    cardSender.amount -= amountTransfer;
+//                    receivingAccount.amount += amountTransfer;
+                    return new Check(amountTransfer, cardSender.getCardNumber(), receivingAccount.getAccountNumber(),
+                            new Date(), "Success.");
                 } else {
-                    return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(),
+                    return new Check(amountTransfer, cardSender.getCardNumber(), receivingAccount.getAccountNumber(),
+                            new Date(),
                             "Limits have been exceeded. The transfer limit for this card is : " + Constants.LIMIT_MASTER_CARD);
                 }
             } else {
-                return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(),
-                        "Incorrect value");
+                return new Check(amountTransfer, cardSender.getCardNumber(), receivingAccount.getAccountNumber(),
+                        new Date(), "Incorrect value");
             }
         }else{
-            return new Check(amountTransfer, cardSender.cardNumber, receivingAccount.accountNumber, new Date(),
-                    "Insufficient funds on the card.");
+            return new Check(amountTransfer, cardSender.getCardNumber(), receivingAccount.getAccountNumber(),
+                    new Date(), "Insufficient funds on the card.");
         }
     }
 }

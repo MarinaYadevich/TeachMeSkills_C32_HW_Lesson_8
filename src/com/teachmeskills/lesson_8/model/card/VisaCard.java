@@ -5,7 +5,7 @@ import com.teachmeskills.lesson_8.utils.Constants;
 import java.util.Date;
 
 public class VisaCard extends BaseCard {
-    int cashback;
+    private int cashback;
 
     public VisaCard(String cardNumber, int cvv, Date validDate, String cardHolder, String currency, double amount, int cashback) {
         super(cardNumber, cvv, validDate, cardHolder, currency, amount);
@@ -23,5 +23,13 @@ public class VisaCard extends BaseCard {
             // TODO реализовать проверку лимита. суть проверки в том, что сумма для перевода не превышает лимит +
             // это пока стоит как ответ-заглушка
         }
+    }
+
+    public int getCashback() {
+        return cashback;
+    }
+
+    public void setCashback(int cashback) {
+        this.cashback = cashback;
     }
 }

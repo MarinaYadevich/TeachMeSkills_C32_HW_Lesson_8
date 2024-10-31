@@ -5,7 +5,7 @@ import com.teachmeskills.lesson_8.utils.Constants;
 import java.util.Date;
 
 public class MasterCard extends BaseCard {
-    public String country;
+    private String country;
 
     public MasterCard(String cardNumber, int cvv, Date validDate, String cardHolder, String currency, double amount, String country) {
         super(cardNumber, cvv, validDate, cardHolder, currency, amount);
@@ -22,6 +22,14 @@ public class MasterCard extends BaseCard {
             return true;
         }
     }
-        // TODO реализовать проверку лимита. суть проверки в том, что сумма для перевода не превышает лимит +
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    // TODO реализовать проверку лимита. суть проверки в том, что сумма для перевода не превышает лимит +
         // это пока стоит как ответ-заглушка
 }
