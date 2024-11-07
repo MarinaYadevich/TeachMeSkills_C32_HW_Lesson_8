@@ -14,10 +14,17 @@ public class Check {
 
     public Check(double transferAmount, String fromNumber, String toNumber, Date dateTransfer, String comment) {
         this.transferAmount = transferAmount;
-        this.toNumber = toNumber;
-        this.fromNumber = fromNumber;
+        this.toNumber = disguiseNumber(toNumber);
+        this.fromNumber = disguiseNumber(fromNumber);
         this.dateTransfer = dateTransfer;
         this.comment = comment;
+    }
+
+    public String disguiseNumber(String numberCard){
+        String resultNumber = numberCard.substring(0,5);
+        String resultNumber1 = numberCard.substring(9,14);
+        String resultCardNumber = resultNumber + "****" + resultNumber1;
+        return resultCardNumber;
     }
 
     public void showCheckInfo(){

@@ -32,18 +32,18 @@ public class ApplicationRunner {
         // TODO реализовать тестовый сценарий +
         IndividualClient client1 = new IndividualClient();
         LegalClient client2 = new LegalClient();
-        Account accountFirstClient1 = new Account("45676444", 2000);
-        Account accountSecondClient1 = new Account("78676490", 3000);
-        MasterCard masterCardClient1 = new MasterCard("26463738",345, new Date(),
+        Account accountFirstClient1 = new Account("45676444567894", 2000);
+        Account accountSecondClient1 = new Account("78676490345678", 3000);
+        MasterCard masterCardClient1 = new MasterCard("26463738251298",345, new Date(),
                 "Ivanov", "EUR", 300, "Belarus" );
-        VisaCard visaCardClient1 = new VisaCard("274637864578", 384, new Date(),
+        VisaCard visaCardClient1 = new VisaCard("27463786457864", 384, new Date(),
                 "Yaroshenko", "BYN", 0, 5);
 
         Account accountFirstClient2 = new Account("5567564567", 1000);
         Account accountSecondClient2 = new Account("75673456873", 7000);
-        MasterCard masterCardClient2 = new MasterCard("745674567",123, new Date(),
+        MasterCard masterCardClient2 = new MasterCard("74567456746756",123, new Date(),
                 "Yadevich", "EUR", 500,"Belarus" );
-        VisaCard visaCardClient2 = new VisaCard("357545894", 907, new Date(),
+        VisaCard visaCardClient2 = new VisaCard("35754589436783", 907, new Date(),
                 "Kylaga","BYN", 800, 9 );
 
 
